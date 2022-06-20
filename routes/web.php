@@ -17,12 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->prefix('dashboard')->group(function () {
+    Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/', App\Http\Livewire\Dashboard\Category\Index::class);
+        Route::get('/create', App\Http\Livewire\Dashboard\Category\Save::class);
+        Route::get('/edit/{id}', App\Http\Livewire\Dashboard\Category\Save::class);
+    });
 });
+
+/* Route::group(['middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified'], 'prefix' => 'dashboard'], function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+}); */
