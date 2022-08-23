@@ -23,9 +23,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     })->name('dashboard');
 
     Route::group(['prefix' => 'category'], function () {
-        Route::get('/', App\Http\Livewire\Dashboard\Category\Index::class);
-        Route::get('/create', App\Http\Livewire\Dashboard\Category\Save::class);
-        Route::get('/edit/{id}', App\Http\Livewire\Dashboard\Category\Save::class);
+        Route::get('/', App\Http\Livewire\Dashboard\Category\Index::class)->name('dashboard.category.index');
+        Route::get('/create', App\Http\Livewire\Dashboard\Category\Save::class)->name('dashboard.category.create');
+        Route::get('/edit/{id}', App\Http\Livewire\Dashboard\Category\Save::class)->name('dashboard.category.edit');
     });
 });
 
