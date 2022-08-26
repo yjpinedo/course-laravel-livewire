@@ -1,6 +1,6 @@
 <div>
     <h1>Listado</h1>
-    <table>
+    <table class="table w-full">
         <thead>
             <tr>
                 <th>Title</th>
@@ -23,4 +23,6 @@
             @endforelse
         </tbody>
     </table>
+    <br>
+    {!! $categories->links() !!}
 </div>

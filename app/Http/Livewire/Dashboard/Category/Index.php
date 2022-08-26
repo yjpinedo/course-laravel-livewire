@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Dashboard\Category;
 
-use App\Models\Category;
 use Livewire\Component;
+use App\Models\Category;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $categories;
+    use WithPagination;
+
     public function render()
     {
-        $this->categories = Category::get();
-        return view('livewire.dashboard.category.index', ['categories' => $this->categories]);
+        return view('livewire.dashboard.category.index', ['categories' => Category::paginate(2)]);
     }
 }
