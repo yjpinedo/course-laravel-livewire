@@ -1,13 +1,9 @@
 <div>
     <form wire:submit.prevent='submit'>
-        <input type="text" wire:model='title' placeholder="Title">
-        @error('title')
-            {{ $message }}
-        @enderror
-        <input type="text" wire:model='text' placeholder="Text">
-        @error('text')
-            {{ $message }}
-        @enderror
-        <button type="submit">Enviar</button>
+        <x-jet-input type="text" wire:model='title' placeholder="Title"/>
+        <x-jet-input-error for="title"/>
+        <x-jet-input type="text" wire:model='text' placeholder="Text"/>
+        <x-jet-input-error for="text"/>
+        <x-jet-button type="submit">Enviar</x-jet-button>
     </form>
 </div>
