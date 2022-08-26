@@ -14,8 +14,8 @@
                         {{ $category->title }}
                     </th>
                     <td>
-                        <a href="{{ route('dashboard.category.edit', $category->id) }}">Edit</a>
-                        <button type="button">Delete</button>
+                        <a href="{{ route('dashboard.category.edit', $category) }}">Edit</a>
+                        <button wire:click="delete({{ $category }})">Delete</button>
                     </td>
                 </tr>
             @empty
