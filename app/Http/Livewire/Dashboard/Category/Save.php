@@ -7,12 +7,21 @@ use Livewire\Component;
 
 class Save extends Component
 {
-    public $title, $text;
+    public $title, $text, $category;
 
     protected $rules = [
         'title' => 'required|min:3|max:255',
         'text' => 'min:3|max:255'
     ];
+
+    public function mount($id = null)
+    {
+        if ($id != null) {
+            $this->category = Category::findOrFail($id);
+            $this->title = $this->category->title;
+            $this->text = $this->category->text;
+        }
+    }
 
     public function render()
     {
@@ -24,10 +33,18 @@ class Save extends Component
 
         $this->validate();
 
-        Category::create([
-            'title' => $this->title,
-            'slug' => str($this->title)->slug(),
-            'text' => $this->text,
-        ]);
+        if ($this->category) {
+            $this->category->update([
+                'title' => $this->title,
+                'slug' => str($this->title)->slug(),
+                'text' => $this->text,
+            ]);
+        } else {
+            Category::create([
+                'title' => $this->title,
+                'slug' => str($this->title)->slug(),
+                'text' => $this->text,
+            ]);
+        }
     }
 }
