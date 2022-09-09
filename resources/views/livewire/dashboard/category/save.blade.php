@@ -1,4 +1,9 @@
 <div>
+
+    <x-jet-action-message on="created">
+        {{ __('Created.') }}
+    </x-jet-action-message>
+
     <form wire:submit.prevent='submit'>
         <x-jet-input type="text" wire:model='title' placeholder="Title"/>
         <x-jet-input-error for="title"/>

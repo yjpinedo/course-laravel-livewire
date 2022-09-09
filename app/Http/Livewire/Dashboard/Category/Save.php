@@ -46,5 +46,7 @@ class Save extends Component
                 'text' => $this->text,
             ]);
         }
+        $this->emit('created');
+
     }
 }
