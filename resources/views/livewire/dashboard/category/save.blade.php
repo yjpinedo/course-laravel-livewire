@@ -1,7 +1,7 @@
 <div>
 
     <x-jet-action-message on="created">
-        {{ __('Created.') }}
+        {{ __('Saved.') }}
     </x-jet-action-message>
 
     <form wire:submit.prevent='submit'>

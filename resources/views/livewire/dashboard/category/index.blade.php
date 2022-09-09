@@ -1,4 +1,9 @@
 <div>
+
+    <x-jet-action-message on="deleted">
+        {{ __('Delete...') }}
+    </x-jet-action-message>
+
     <h1>Listado</h1>
     <table class="table w-full">
         <thead>
