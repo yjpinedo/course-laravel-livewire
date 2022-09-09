@@ -15,7 +15,9 @@
                     </th>
                     <td>
                         <a href="{{ route('dashboard.category.edit', $category) }}">Edit</a>
-                        <button wire:click="delete({{ $category }})">Delete</button>
+                        <x-jet-danger-button onclick="confirm('Seguro que desea eliminar la categoría seleccionada?') || event.stopImmediatePropagation()" wire:click="delete({{ $category }})">
+                            Delete
+                        </x-jet-danger-button>
                     </td>
                 </tr>
             @empty

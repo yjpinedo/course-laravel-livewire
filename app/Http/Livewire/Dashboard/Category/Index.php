@@ -12,7 +12,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.category.index', ['categories' => Category::paginate(8)]);
+        return view('livewire.dashboard.category.index', ['categories' => Category::latest()->paginate(4)]);
     }
 
     public function delete(Category $category)
