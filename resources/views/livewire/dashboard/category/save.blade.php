@@ -14,6 +14,10 @@
         <x-jet-input type="file" wire:model='image' />
         <x-jet-input-error for="image" />
 
+        @if ($category && $category->image)
+            <img class="w-40 my-3" src="{{ $category->getImageURL() }}" alt="">
+        @endif
+
         <x-jet-button type="submit">Enviar</x-jet-button>
     </form>
 </div>
