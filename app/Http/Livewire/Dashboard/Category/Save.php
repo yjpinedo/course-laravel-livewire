@@ -4,14 +4,19 @@ namespace App\Http\Livewire\Dashboard\Category;
 
 use App\Models\Category;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Save extends Component
 {
+    use WithFileUploads;
+
     public $title, $text, $category;
+    public $image;
 
     protected $rules = [
         'title' => 'required|min:3|max:255',
-        'text' => 'min:3|max:255'
+        'text' => 'min:3|max:255',
+        'image' => 'nullable|image'
     ];
 
     public function mount($id = null)
@@ -40,13 +45,21 @@ class Save extends Component
                 'text' => $this->text,
             ]);
         } else {
-            Category::create([
+            $this->category = Category::create([
                 'title' => $this->title,
                 'slug' => str($this->title)->slug(),
                 'text' => $this->text,
             ]);
         }
-        $this->emit('created');
 
+        if ($this->image) {
+            $imageName = $this->category->slug . '.' . $this->image->getClientOriginalExtension();
+            $this->image->storeAs('image', $imageName, 'public_upload');
+            $this->category->update([
+                'image' => $imageName,
+            ]);
+        }
+
+        $this->emit('created');
     }
 }
