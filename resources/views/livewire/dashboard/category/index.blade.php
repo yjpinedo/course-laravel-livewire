@@ -11,8 +11,10 @@
     </x-jet-action-message>
 
     <x-slot name="title">
-        Listado
+        {{ __('List') }}
     </x-slot>
+
+    <a class="inline-block px-6 py-2.5 w-full text-center bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out mb-3" href="{{ route('dashboard.category.create') }}">Add</a>
 
     <table class="table w-full border">
         <thead class="text-left bg-gray-100">
@@ -28,7 +30,7 @@
                         {{ $category->title }}
                     </td>
                     <td class="p-2">
-                        <a href="{{ route('dashboard.category.edit', $category) }}" class="mr-2">Edit</a>
+                        <a href="{{ route('dashboard.category.edit', $category) }}" class="mr-2 inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Edit</a>
                         <x-jet-danger-button
                             {{-- onclick="confirm('Seguro que desea eliminar la categoría seleccionada?') || event.stopImmediatePropagation()" --}}
                             wire:click="seletCategory({{ $category }})">
