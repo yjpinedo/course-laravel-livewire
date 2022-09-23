@@ -5,7 +5,9 @@
 <x-card>
 
     <x-jet-action-message on="deleted">
-        {{ __('Delete...') }}
+        <div class="py-2 px-4 bg-green-300 border rounded mb-4 text-black">
+            {{ __('Delete...') }}
+        </div>
     </x-jet-action-message>
 
     <x-slot name="title">
