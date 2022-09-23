@@ -10,14 +10,24 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $confirmingDeletedCategory;
+    public $categoryToDelete;
+
     public function render()
     {
         return view('livewire.dashboard.category.index', ['categories' => Category::latest()->paginate(4)]);
     }
 
-    public function delete(Category $category)
+    public function seletCategory(Category $category)
+    {
+        $this->categoryToDelete = $category;
+        $this->confirmingDeletedCategory = true;
+    }
+
+    public function delete()
     {
         $this->emit('deleted');
-        $category->delete();
+        $this->categoryToDelete->delete();
+        $this->confirmingDeletedCategory = false;
     }
 }

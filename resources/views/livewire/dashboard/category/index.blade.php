@@ -27,7 +27,9 @@
                     </td>
                     <td class="p-2">
                         <a href="{{ route('dashboard.category.edit', $category) }}" class="mr-2">Edit</a>
-                        <x-jet-danger-button onclick="confirm('Seguro que desea eliminar la categoría seleccionada?') || event.stopImmediatePropagation()" wire:click="delete({{ $category }})">
+                        <x-jet-danger-button
+                            {{-- onclick="confirm('Seguro que desea eliminar la categoría seleccionada?') || event.stopImmediatePropagation()" --}}
+                            wire:click="seletCategory({{ $category }})">
                             Delete
                         </x-jet-danger-button>
                     </td>
@@ -39,4 +41,25 @@
     </table>
     <br>
     {!! $categories->links() !!}
+
+    <x-jet-confirmation-modal wire:model="confirmingDeletedCategory">
+        <x-slot name="title">
+            {{ __('Delete Category') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Are you sure you want to delete this category?') }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingDeletedCategory')" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
+                {{ __('Delete') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
+
 </x-card>
