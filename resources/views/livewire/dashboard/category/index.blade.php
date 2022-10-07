@@ -33,7 +33,7 @@
                         <a href="{{ route('dashboard.category.edit', $category) }}" class="mr-2 inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Edit</a>
                         <x-jet-danger-button
                             {{-- onclick="confirm('Seguro que desea eliminar la categoría seleccionada?') || event.stopImmediatePropagation()" --}}
-                            wire:click="seletCategory({{ $category }})">
+                            wire:click="selectCategory({{ $category }})">
                             Delete
                         </x-jet-danger-button>
                     </td>

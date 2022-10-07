@@ -18,7 +18,7 @@ class Index extends Component
         return view('livewire.dashboard.category.index', ['categories' => Category::latest()->paginate(4)]);
     }
 
-    public function seletCategory(Category $category)
+    public function selectCategory(Category $category)
     {
         $this->categoryToDelete = $category;
         $this->confirmingDeletedCategory = true;
