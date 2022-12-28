@@ -27,6 +27,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/create', App\Http\Livewire\Dashboard\Category\Save::class)->name('dashboard.category.create');
         Route::get('/edit/{id}', App\Http\Livewire\Dashboard\Category\Save::class)->name('dashboard.category.edit');
     });
+
+    Route::group(['prefix' => 'contact'], function () {
+        Route::get('/', App\Http\Livewire\Contact\General::class)->name('contact.general');
+    });
 });
 
 /* Route::group(['middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified'], 'prefix' => 'dashboard'], function () {
