@@ -8,7 +8,7 @@
         <x-jet-input-error for="type" />
 
         <select wire:model="type">
-            <option value="">{{ __('Seleccione') }}</option>
+            <option value="">{{ __('Selected') }}</option>
             <option value="company">{{ __('Company') }}</option>
             <option value="person">{{ __('Person') }}</option>
         </select>

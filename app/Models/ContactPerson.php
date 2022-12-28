@@ -9,8 +9,8 @@ class ContactPerson extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'surnema', 'other', 'choises', 'contact_general_id'];
-    protected $timestamp = false;
+    protected $fillable = ['name', 'surname', 'other', 'choices', 'contact_general_id'];
+    public $timestamps = false;
 
     public function general()
     {
