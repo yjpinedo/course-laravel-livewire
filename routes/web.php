@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,6 +20,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::group(['prefix' => 'contact'], function () {
         Route::get('/', App\Http\Livewire\Contact\General::class)->name('contact.general');
         Route::get('/person', App\Http\Livewire\Contact\Person::class)->name('contact.person');
+        Route::get('/company', App\Http\Livewire\Contact\Company::class)->name('contact.company');
     });
 });
 

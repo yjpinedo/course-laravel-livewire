@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('code', 50);
-            $table->string('email', 80);
+            $table->string('email', 80)->unique();
             $table->string('extra', 205);
             $table->enum('choices', ['adverd', 'post', 'course', 'movie', 'other']);
             $table->foreignId('contact_general_id')->constrained()->onDelete('cascade');

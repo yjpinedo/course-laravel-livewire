@@ -14,6 +14,6 @@ class ContactPerson extends Model
 
     public function general()
     {
-        return $this->belongsTo(ContactGeneral::class);
+        return $this->belongsTo(ContactGeneral::class, 'contact_general_id');
     }
 }

@@ -9,11 +9,11 @@ class ContactCompany extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'code', 'email', 'extra', 'choises', 'contact_general_id'];
-    protected $timestamp = false;
+    protected $fillable = ['name', 'code', 'email', 'extra', 'choices', 'contact_general_id'];
+    public $timestamps = false;
 
     public function general()
     {
-        return $this->belongsTo(ContactGeneral::class);
+        return $this->belongsTo(ContactGeneral::class, 'contact_general_id');
     }
 }
