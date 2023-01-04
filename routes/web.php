@@ -21,6 +21,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/', App\Http\Livewire\Contact\General::class)->name('contact.general');
         Route::get('/person', App\Http\Livewire\Contact\Person::class)->name('contact.person');
         Route::get('/company', App\Http\Livewire\Contact\Company::class)->name('contact.company');
+        Route::get('/detail', App\Http\Livewire\Contact\Detail::class)->name('contact.detail');
     });
 });
 

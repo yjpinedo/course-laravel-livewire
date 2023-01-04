@@ -10,10 +10,10 @@ class ContactDetail extends Model
     use HasFactory;
 
     protected $fillable = ['text', 'contact_general_id'];
-    protected $timestamp = false;
+    public $timestamps = false;
 
     public function general()
     {
-        return $this->belongsTo(ContactGeneral::class);
+        return $this->belongsTo(ContactGeneral::class, 'contact_general_id');
     }
 }
