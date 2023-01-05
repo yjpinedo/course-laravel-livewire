@@ -27,6 +27,7 @@
             <option value="other">{{ __('Other') }}</option>
         </select>
 
+        <x-jet-secondary-button wire:click="$emit('stepEvent', 1)">{{ __('Atras') }}</x-jet-secondary-button>
         <x-jet-button type="submit">{{ __('Enviar') }}</x-jet-button>
     </form>
 </div>

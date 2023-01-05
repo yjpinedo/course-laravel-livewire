@@ -10,6 +10,7 @@ class Person extends Component
     public $name, $surname;
     public $choices;
     public $other;
+    public $parentId;
 
     protected $rules = [
         'name' => 'required|min:2|max:50',
@@ -18,9 +19,11 @@ class Person extends Component
         'choices' => 'required',
     ];
 
+    protected $listeners = ['getParentId'];
+
     public function render()
     {
-        return view('livewire.contact.person');
+        return view('livewire.contact.person')->layout('layouts.contact');
     }
 
     public function submit()
@@ -32,7 +35,14 @@ class Person extends Component
             'surname' => $this->surname,
             'other' => $this->other,
             'choices' => $this->choices,
-            'contact_general_id' => 1,
+            'contact_general_id' => $this->parentId,
         ]);
+
+        $this->emit('stepEvent', 3);
+    }
+
+    public function getParentId($id)
+    {
+        $this->parentId = $id;
     }
 }

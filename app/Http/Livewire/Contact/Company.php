@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Company extends Component
 {
-    public $name, $code, $email, $extra, $choices;
+    public $name, $code, $email, $extra, $choices, $parentId;
 
     protected $rules = [
         'name' => 'required|min:2|max:255',
@@ -17,9 +17,11 @@ class Company extends Component
         'choices' => 'required',
     ];
 
+    protected $listeners = ['getParentId'];
+
     public function render()
     {
-        return view('livewire.contact.company');
+        return view('livewire.contact.company')->layout('layouts.contact');
     }
 
     public function submit()
@@ -32,7 +34,14 @@ class Company extends Component
             'email' => $this->email,
             'extra' => $this->extra,
             'choices' => $this->choices,
-            'contact_general_id' => 2,
+            'contact_general_id' => $this->parentId,
         ]);
+
+        $this->emit('stepEvent', 3);
+    }
+
+    public function getParentId($id)
+    {
+        $this->parentId = $id;
     }
 }
