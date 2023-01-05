@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -19,5 +20,10 @@ class Post extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggables');
+    }
+
+    public function getImageURL() : string
+    {
+        return URL::asset('image/posts/' . $this->image);
     }
 }

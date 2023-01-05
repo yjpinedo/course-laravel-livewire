@@ -17,11 +17,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/edit/{id}', App\Http\Livewire\Dashboard\Category\Save::class)->name('dashboard.category.edit');
     });
 
+    Route::group(['prefix' => 'post'], function () {
+        Route::get('/', App\Http\Livewire\Dashboard\Post\Index::class)->name('dashboard.posts.index');
+        Route::get('/create', App\Http\Livewire\Dashboard\Post\Save::class)->name('dashboard.posts.create');
+        Route::get('/edit/{id}', App\Http\Livewire\Dashboard\Post\Save::class)->name('dashboard.posts.edit');
+    });
+
     Route::group(['prefix' => 'contact'], function () {
         Route::get('/', App\Http\Livewire\Contact\General::class)->name('contact.general');
-        Route::get('/person', App\Http\Livewire\Contact\Person::class)->name('contact.person');
-        Route::get('/company', App\Http\Livewire\Contact\Company::class)->name('contact.company');
-        Route::get('/detail', App\Http\Livewire\Contact\Detail::class)->name('contact.detail');
     });
 });
 

@@ -54,7 +54,7 @@ class Save extends Component
 
         if ($this->image) {
             $imageName = $this->category->slug . '.' . $this->image->getClientOriginalExtension();
-            $this->image->storeAs('image', $imageName, 'public_upload');
+            $this->image->storeAs('image/categories', $imageName, 'public_upload');
             $this->category->update([
                 'image' => $imageName,
             ]);
