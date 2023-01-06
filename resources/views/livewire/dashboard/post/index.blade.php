@@ -17,8 +17,15 @@
     <a class="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out mb-3"
         href="{{ route('dashboard.posts.create') }}">Add</a>
 
-    <div class="flex gap-2 mb-2">
+    <div class="grid grid-cols-2 gap-2">
+        <x-jet-input type="text" class="w-full mb-2" wire:model="search" placeholder="Search id, title o description"/>
+        <div class="grid grid-cols-2 gap-2">
+            <x-jet-input type="date" class="w-full mb-2" wire:model="from" placeholder="From"/>
+            <x-jet-input type="date" class="w-full mb-2" wire:model="to" placeholder="To"/>
+        </div>
+    </div>
 
+    <div class="flex gap-2 mb-2">
         <select class="block w-full" wire:model='posted'>
             <option value="">Posted</option>
             <option value="yes">Yes</option>

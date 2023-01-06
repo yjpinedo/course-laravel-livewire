@@ -18,19 +18,43 @@ class Index extends Component
 
     public $posted, $type, $category_id;
 
+    /* Search */
+
+    public $search;
+
+    /* Between Dates */
+
+    public $from, $to;
+
+    /* QueryString */
+    protected $queryString = ['search', 'posted', 'type', 'category_id'];
+
     public function render()
     {
         $posts = Post::latest();
+
+        if ($this->search && $this->search != '') {
+            $posts->where(function ($query) {
+                $query->orWhere('id', 'like', "%$this->search%")
+                    ->orWhere('title', 'like', "%$this->search%")
+                    ->orWhere('description', 'like', "%$this->search%");
+            });
+        }
+
+        if ($this->from && $this->to != '') {
+            $posts->whereBetween('date', [date($this->from), date($this->to)]);
+        }
+
         if ($this->posted && $this->posted != '') {
-            $posts = $posts->where('posted', $this->posted);
+            $posts->where('posted', $this->posted);
         }
 
         if ($this->type && $this->type != '') {
-            $posts = $posts->where('type', $this->type);
+            $posts->where('type', $this->type);
         }
 
         if ($this->category_id && $this->category_id != '') {
-            $posts = $posts->where('category_id', $this->category_id);
+            $posts->where('category_id', $this->category_id);
         }
 
         return view('livewire.dashboard.post.index', ['posts' => $posts->paginate(10), 'categories' => Category::pluck('title', 'id')]);
