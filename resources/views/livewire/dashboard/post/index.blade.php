@@ -17,6 +17,31 @@
     <a class="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out mb-3"
         href="{{ route('dashboard.posts.create') }}">Add</a>
 
+    <div class="flex gap-2 mb-2">
+
+        <select class="block w-full" wire:model='posted'>
+            <option value="">Posted</option>
+            <option value="yes">Yes</option>
+            <option value="not">Not</option>
+        </select>
+
+        <select class="block w-full" wire:model='type'>
+            <option value="">Type</option>
+            <option value="adverd">Adverd</option>
+            <option value="post">Post</option>
+            <option value="course">Course</option>
+            <option value="movie">Movie</option>
+        </select>
+
+        <select class="block w-full" wire:model='category_id'>
+            <option value="">Category</option>
+            @foreach ($categories as $key => $category)
+                <option value="{{ $key }}">{{ $category }}</option>
+            @endforeach
+        </select>
+
+    </div>
+
     <table class="table w-full border">
         <thead class="text-left bg-gray-100">
             <tr class="border-b">
@@ -48,7 +73,7 @@
                         {{ $post->type }}
                     </td>
                     <td class="p-2">
-                        {{ $post->category->title}}
+                        {{ $post->category->title }}
                     </td>
                     <td class="p-2">
                         <a href="{{ route('dashboard.posts.edit', $post) }}"
