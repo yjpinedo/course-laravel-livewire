@@ -15,7 +15,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.category.index', ['categories' => Category::latest()->paginate(4)]);
+        return view('livewire.dashboard.category.index', ['categories' => Category::latest()->paginate(5)]);
     }
 
     public function selectCategory(Category $category)

@@ -15,7 +15,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.post.index', ['posts' => Post::latest()->paginate(4)]);
+        return view('livewire.dashboard.post.index', ['posts' => Post::latest()->paginate(10)]);
     }
 
     public function selectPost(Post $post)

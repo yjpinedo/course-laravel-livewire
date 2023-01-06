@@ -14,14 +14,17 @@
         {{ __('List') }}
     </x-slot>
 
-    <a class="inline-block px-6 py-2.5 w-full text-center bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out mb-3"
+    <a class="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out mb-3"
         href="{{ route('dashboard.posts.create') }}">Add</a>
 
     <table class="table w-full border">
         <thead class="text-left bg-gray-100">
             <tr class="border-b">
                 <th class="p-2">Title</th>
+                <th class="p-2">Date</th>
                 <th class="p-2">Description</th>
+                <th class="p-2">Posted</th>
+                <th class="p-2">Type</th>
                 <th class="p-2">Category</th>
                 <th class="p-2">Actions</th>
             </tr>
@@ -33,7 +36,16 @@
                         {{ $post->title }}
                     </td>
                     <td class="p-2">
-                        {{ $post->description }}
+                        {{ $post->date }}
+                    </td>
+                    <td class="p-2">
+                        <textarea>{{ $post->description }}</textarea>
+                    </td>
+                    <td class="p-2">
+                        {{ $post->posted }}
+                    </td>
+                    <td class="p-2">
+                        {{ $post->type }}
                     </td>
                     <td class="p-2">
                         {{ $post->category->title}}
