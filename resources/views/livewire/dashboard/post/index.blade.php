@@ -18,10 +18,10 @@
         href="{{ route('dashboard.posts.create') }}">Add</a>
 
     <div class="grid grid-cols-2 gap-2">
-        <x-jet-input type="text" class="w-full mb-2" wire:model="search" placeholder="Search id, title o description"/>
+        <x-jet-input type="text" class="w-full mb-2" wire:model="search" placeholder="Search id, title o description" />
         <div class="grid grid-cols-2 gap-2">
-            <x-jet-input type="date" class="w-full mb-2" wire:model="from" placeholder="From"/>
-            <x-jet-input type="date" class="w-full mb-2" wire:model="to" placeholder="To"/>
+            <x-jet-input type="date" class="w-full mb-2" wire:model="from" placeholder="From" />
+            <x-jet-input type="date" class="w-full mb-2" wire:model="to" placeholder="To" />
         </div>
     </div>
 
@@ -52,18 +52,29 @@
     <table class="table w-full border">
         <thead class="text-left bg-gray-100">
             <tr class="border-b">
-                <th class="p-2">Title</th>
-                <th class="p-2">Date</th>
-                <th class="p-2">Description</th>
-                <th class="p-2">Posted</th>
-                <th class="p-2">Type</th>
-                <th class="p-2">Category</th>
+                @foreach ($columns as $key => $column)
+                    <th class="p-2">
+                        <button wire:click="sort('{{ $key }}')">
+                            {{ $column }}
+                            @if ($key == $sortColumn)
+                                @if ($this->sortMethod == 'asc')
+                                    &uarr;
+                                @else
+                                    &darr;
+                                @endif
+                            @endif
+                        </button>
+                    </th>
+                @endforeach
                 <th class="p-2">Actions</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($posts as $post)
                 <tr class="border-b">
+                    <td class="p-2">
+                        {{ $post->id }}
+                    </td>
                     <td class="p-2">
                         {{ $post->title }}
                     </td>

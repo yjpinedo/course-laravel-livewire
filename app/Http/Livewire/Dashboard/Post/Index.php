@@ -5,11 +5,12 @@ namespace App\Http\Livewire\Dashboard\Post;
 use App\Models\Post;
 use Livewire\Component;
 use App\Models\Category;
+use App\Traits\OrderColumnsTrait;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination, OrderColumnsTrait;
 
     public $confirmingDeletedPost;
     public $postToDelete;
@@ -26,12 +27,23 @@ class Index extends Component
 
     public $from, $to;
 
+    /* Sorts */
+    public $columns = [
+        'id' => 'Id',
+        'title' => 'Title',
+        'date' => 'Date',
+        'description' => 'Description',
+        'posted' => 'Posted',
+        'type' => 'Type',
+        'category_id' => 'Category',
+    ];
+
     /* QueryString */
     protected $queryString = ['search', 'posted', 'type', 'category_id'];
 
     public function render()
     {
-        $posts = Post::latest();
+        $posts = Post::orderBy($this->sortColumn, $this->sortMethod);
 
         if ($this->search && $this->search != '') {
             $posts->where(function ($query) {
