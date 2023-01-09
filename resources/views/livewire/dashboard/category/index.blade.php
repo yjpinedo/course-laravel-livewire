@@ -19,13 +19,29 @@
     <table class="table w-full border">
         <thead class="text-left bg-gray-100">
             <tr class="border-b">
-                <th class="p-2">Title</th>
+                @foreach ($columns as $key => $column)
+                    <th class="p-2">
+                        <button wire:click="sort('{{ $key }}')">
+                            {{ $column }}
+                            @if ($key == $sortColumn)
+                                @if ($this->sortMethod == 'asc')
+                                    &uarr;
+                                @else
+                                    &darr;
+                                @endif
+                            @endif
+                        </button>
+                    </th>
+                @endforeach
                 <th class="p-2">Actions</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($categories as $category)
                 <tr class="border-b">
+                    <td class="p-2">
+                        {{ $category->id }}
+                    </td>
                     <td class="p-2">
                         {{ $category->title }}
                     </td>
