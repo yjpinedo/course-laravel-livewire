@@ -32,6 +32,13 @@
                     <textarea wire:model='description' class="block w-full"></textarea>
                     <x-jet-input-error for="description" />
                 </div>
+                <div class="col-span-6 sm:col-span-4">
+                    <div wire:ignore>
+                        <div id="editor">
+                            {!! $description !!}
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="name" value="{{ __('Text') }}" />
@@ -89,3 +96,25 @@
         </x-jet-form-section>
     </div>
 </div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
+<script>
+    document.addEventListener('livewire:load', function() {
+        let ckEditor = null;
+        let editor = ClassicEditor.create(document.querySelector('#editor')).then(
+            editor => {
+                ckEditor = editor;
+                editor.model.document.on('change:data', () => {
+                    @this.description = editor.getData();
+                });
+            }
+        );
+        /* Comuncación propiedad -> plugin */
+        /* Livewire.hook('message.processed', (message, component) => {
+            if (message.updateQueue[0].name === 'description') {
+                ckEditor.setData(@this.description);
+            }
+        }); */
+    });
+</script>
